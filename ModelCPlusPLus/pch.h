@@ -8,7 +8,19 @@
 
 #ifndef PCH_H
 #define PCH_H
+//otrzymywane
 
+const int Mm = 3000;	//Masa wymiennika po stronie pierwotnej
+const int Mco = 3000;	//Masa wymiennika po stronie wtornej
+
+const int cwym = 2700;	//zastepcze cieplo wlasciwe wymiennika
+const int ro = 1000;	//gestosc wody
+const int cw = 4200;	//cieplo wlasciwe wody
+const int kw = 250000;	//wspolczynnik przenikania ciepla
+
+
+int Tpm(int Fzm, int ro, int cw, int Tzm, int Tpm,int Tzco, int Mm, int cwym);
+int Tzco(int Fzco, int ro, int cw, int Tzco, int Tpco, int kw, int Tpm, int Mco, int cwym );
 // TODO: w tym miejscu dodaj nagłówki, które mają być wstępnie kompilowane
 
 #endif //PCH_H

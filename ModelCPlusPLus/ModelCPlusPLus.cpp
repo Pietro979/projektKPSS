@@ -6,7 +6,14 @@
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	int Fzm = 25;		//Strumien ogrzanej wody od 0 do ok. 22
+	int To = 5;		//Temperatura zewnetrzna
+	
+	int Tpm = 5;
+	int Tzco = 46.25;
+	while (1) {
+
+	}
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
