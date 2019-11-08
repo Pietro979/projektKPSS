@@ -9,8 +9,8 @@ int main()
 	int Fzm = 25;		//Strumien ogrzanej wody od 0 do ok. 22
 	int To = 5;		//Temperatura zewnetrzna
 	
-	int Tpm = 5;
-	int Tzco = 46.25;
+	int Tpm = 5;		//woda wracajaca do elektrowni
+	int Tzco = 46.25;	//woda idąca do budynku
 	while (1) {
 
 	}
