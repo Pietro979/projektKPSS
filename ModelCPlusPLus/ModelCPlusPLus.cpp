@@ -3,22 +3,42 @@
 
 #include "pch.h"
 #include <iostream>
-
+#include <time.h>
+#include <Windows.h>
+#include <ctime>
+#include <cstdio>
+using namespace std;
 int main()
 {
 	double Fzm = 10;		//Strumien ogrzanej wody od 0 do ok. 22
 	double To = -5;			//Temperatura zewnetrzna
 	double Tpco = 27;		//Temperatura wody wyplywajacej z budynku
-
-	double Tpm = 20;		//woda wracajaca do elektrowni
-	double Tzco = 20;		//woda idąca do budynku
+	//int time4 = clock();
+	double Tpm = 0;		//woda wracajaca do elektrowni
+	double Tzco = 0;		//woda idąca do budynku
 	double Fzco = 10;		//nie wiem xd
 	double Tzm = 70 - 2.5*(To - 6);//strumien ogrzanej wody
 	
+	
+	time_t Timerrr; // czas systemowy
+	time(&Timerrr);
+	time_t localtime = Timerrr; //czas który dostajemy na początku, dla przykładu wstawiłem tutaj systemowy
+
 	while (1) {
-		Tpm = Tpmf(Fzm, ro, cw, Tzm, Tpm, Tzco, Mm, cwym);
-		Tzco = Tzcof(Fzco, ro, cw, Tzco, Tpco, kw, Tpm, Mco, cwym);
+		//if(!impuls)
+		if (GetKeyState('A') & 0x8000/*Check if high-order bit is set (1 << 15)*/) {
+			for (int i = 1; i <= 100; i++) {
+				
+				Tpm = Tpmf(Fzm, ro, cw, Tzm, Tpm, Tzco, Mm, cwym);
+				Tzco = Tzcof(Fzco, ro, cw, Tzco, Tpco, kw, Tpm, Mco, cwym);
+				
+				if (i == 20 || i == 40 || i == 60 || i == 80 || i == 100) localtime += 1 * scale;
+			}
+			
+		}
 	}
+	
+	
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
