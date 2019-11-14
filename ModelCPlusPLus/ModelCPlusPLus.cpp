@@ -6,13 +6,18 @@
 
 int main()
 {
-	int Fzm = 25;		//Strumien ogrzanej wody od 0 do ok. 22
-	int To = 5;		//Temperatura zewnetrzna
-	
-	int Tpm = 5;		//woda wracajaca do elektrowni
-	int Tzco = 46.25;	//woda idąca do budynku
-	while (1) {
+	double Fzm = 10;		//Strumien ogrzanej wody od 0 do ok. 22
+	double To = -5;			//Temperatura zewnetrzna
+	double Tpco = 27;		//Temperatura wody wyplywajacej z budynku
 
+	double Tpm = 20;		//woda wracajaca do elektrowni
+	double Tzco = 20;		//woda idąca do budynku
+	double Fzco = 10;		//nie wiem xd
+	double Tzm = 70 - 2.5*(To - 6);//strumien ogrzanej wody
+	
+	while (1) {
+		Tpm = Tpmf(Fzm, ro, cw, Tzm, Tpm, Tzco, Mm, cwym);
+		Tzco = Tzcof(Fzco, ro, cw, Tzco, Tpco, kw, Tpm, Mco, cwym);
 	}
 }
 

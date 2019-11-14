@@ -8,19 +8,20 @@
 
 #ifndef PCH_H
 #define PCH_H
-//otrzymywane
+//otrzymywane oraz wartosci fizyczne 
+const double Mm = 3000;	//Masa wymiennika po stronie pierwotnej
+const double Mco = 3000;	//Masa wymiennika po stronie wtornej
 
-const int Mm = 3000;	//Masa wymiennika po stronie pierwotnej
-const int Mco = 3000;	//Masa wymiennika po stronie wtornej
+const double cwym = 2700;	//zastepcze cieplo wlasciwe wymiennika
+const double ro = 1000;	//gestosc wody
+const double cw = 4200;	//cieplo wlasciwe wody
+const double kw = 250000;	//wspolczynnik przenikania ciepla
 
-const int cwym = 2700;	//zastepcze cieplo wlasciwe wymiennika
-const int ro = 1000;	//gestosc wody
-const int cw = 4200;	//cieplo wlasciwe wody
-const int kw = 250000;	//wspolczynnik przenikania ciepla
+// do wlasciwego wyliczenia rozniczki w funkcjach Tpmf oraz Tzcof
+double d = 0.01; //KROK!!!! zmierza do 0
 
-
-int Tpm(int Fzm, int ro, int cw, int Tzm, int Tpm,int Tzco, int Mm, int cwym);
-int Tzco(int Fzco, int ro, int cw, int Tzco, int Tpco, int kw, int Tpm, int Mco, int cwym );
+double Tpmf(double Fzm, double ro, double cw, double Tzm, double Tpm, double Tzco, double Mm, double cwym); //zwraca Tpm[i+1]
+double Tzcof(double Fzco, double ro, double cw, double Tzco, double Tpco, double kw, double Tpm, double Mco, double cwym );//zwraca Tzco[i+1]
 // TODO: w tym miejscu dodaj nagłówki, które mają być wstępnie kompilowane
 
 #endif //PCH_H
