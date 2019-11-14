@@ -36,6 +36,16 @@ int main()
 			}
 			
 		}
+		/*iteracja++;
+		Tpm = Tpmf(Fzm, ro, cw, Tzm, Tpm, Tzco, Mm, cwym);
+		Tzco = Tzcof(Fzco, ro, cw, Tzco, Tpco, kw, Tpm, Mco, cwym);
+		Sleep(1000);
+		std::cout << "wcisnij A aby dzielic dane\n";
+		while (GetKeyState('A') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
+		//{
+			//std::cout << "A jest wcisniete - data sharing\n("<<iteracja<<"iteracja symulacji)\n";
+			//Sleep(1000);
+		//}*/
 	}
 	
 	
