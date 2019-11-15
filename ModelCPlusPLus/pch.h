@@ -19,7 +19,7 @@ const double kw = 250000;	//wspolczynnik przenikania ciepla
 
 // do wlasciwego wyliczenia rozniczki w funkcjach Tpmf oraz Tzcof
 double d = 0.05; //KROK!!!! zmierza do 0
-int scale = 60; //skala czasu
+ //skala czasu
 double Tpmf(double Fzm, double ro, double cw, double Tzm, double Tpm, double Tzco, double Mm, double cwym); //zwraca Tpm[i+1]
 double Tzcof(double Fzco, double ro, double cw, double Tzco, double Tpco, double kw, double Tpm, double Mco, double cwym );//zwraca Tzco[i+1]
 // TODO: w tym miejscu dodaj nagłówki, które mają być wstępnie kompilowane

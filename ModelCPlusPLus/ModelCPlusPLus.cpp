@@ -18,7 +18,7 @@ int main()
 	double Tzco = 0;		//woda idąca do budynku
 	double Fzco = 10;		//nie wiem xd
 	double Tzm = 70 - 2.5*(To - 6);//strumien ogrzanej wody
-	
+	int timescale = 60;
 	
 	time_t Timerrr; // czas systemowy
 	time(&Timerrr);
@@ -28,11 +28,11 @@ int main()
 		//if(!impuls)
 		if (GetKeyState('A') & 0x8000/*Check if high-order bit is set (1 << 15)*/) {
 			for (int i = 1; i <= 100; i++) {
-				
+				cout << "Time: " << localtime << endl;
 				Tpm = Tpmf(Fzm, ro, cw, Tzm, Tpm, Tzco, Mm, cwym);
 				Tzco = Tzcof(Fzco, ro, cw, Tzco, Tpco, kw, Tpm, Mco, cwym);
-				
-				if (i == 20 || i == 40 || i == 60 || i == 80 || i == 100) localtime += 1 * scale;
+				cout <<i<<". "<< Tpm << "  " << Tzco << endl;
+				if (i == 20 || i == 40 || i == 60 || i == 80 || i == 100) localtime += 1 * timescale;
 			}
 			
 		}
@@ -41,11 +41,11 @@ int main()
 		Tzco = Tzcof(Fzco, ro, cw, Tzco, Tpco, kw, Tpm, Mco, cwym);
 		Sleep(1000);
 		std::cout << "wcisnij A aby dzielic dane\n";
-		while (GetKeyState('A') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
-		//{
-			//std::cout << "A jest wcisniete - data sharing\n("<<iteracja<<"iteracja symulacji)\n";
-			//Sleep(1000);
-		//}*/
+		while (GetKeyState('A') & 0x8000/*Check if high-order bit is set (1 << 15)
+		{
+			std::cout << "A jest wcisniete - data sharing\n("<<iteracja<<"iteracja symulacji)\n";
+			Sleep(1000);
+		}*/
 	}
 	
 	
