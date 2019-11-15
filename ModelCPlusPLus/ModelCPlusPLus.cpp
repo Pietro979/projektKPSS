@@ -35,7 +35,7 @@ int main()
 				if (i == 20 || i == 40 || i == 60 || i == 80 || i == 100) localtime += 1 * timescale;
 			}
 			
-		}//
+		}////
 		/*iteracja++;
 		Tpm = Tpmf(Fzm, ro, cw, Tzm, Tpm, Tzco, Mm, cwym);
 		Tzco = Tzcof(Fzco, ro, cw, Tzco, Tpco, kw, Tpm, Mco, cwym);
