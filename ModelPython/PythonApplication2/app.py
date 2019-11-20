@@ -5,11 +5,6 @@ from flask import request
 app = Flask(__name__)
 
 
-quarks = [{'name': 'up', 'charge': '+2/3'},
-          {'name': 'down', 'charge': '-1/3'},
-          {'name': 'charm', 'charge': '+2/3'},
-          {'name': 'strange', 'charge': '-1/3'}]
-
 variables = [{'name': 'Fzm', 'value': 10.0 },
 			 {'name': 'To', 'value' : -5.0},
 			 {'name': 'Tpco', 'value': 27.0},
@@ -38,16 +33,16 @@ def returnOne(name):
 
 @app.route('/variables', methods=['POST'])
 def addOne():
-    new_quark = request.get_json()
-    quarks.append(new_quark)
+    variables = request.get_json()
+    variables.append(variables)
     return jsonify({'variables' : variables})
 
 @app.route('/variables/<string:name>', methods=['PUT'])
 def editOne(name):
-    new_quark = request.get_json()
+    new_variables = request.get_json()
     for i,q in enumerate(variables):
       if q['name'] == name:
-        variables[i] = new_quark    
+        variables[i] = new_variables    
     qs = request.get_json()
     return jsonify({'variables' : variables})
 
