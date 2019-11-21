@@ -21,7 +21,12 @@ Tpco = 27;          #Temperatura wody wyplywajacej z budynku
 Fzco = 10;          #nie wiem xd
 Tzm = 70 - 2.5*(To - 6);  #strumien ogrzanej wody
 d = 0.01
-
+#adress
+module3_address = "http://127.0.0.1:5000"
+module5_address = "http://127.0.0.1:5000"
+module61_address = "http://127.0.0.1:5000"
+module62_address = "http://127.0.0.1:5000"
+module63_address = "http://127.0.0.1:5000"
 #endpoints
 start = [{}]  #metoda put do modułu czasowego 
 timeS  = [{"speed":0,"symTime" : "2019-11-18+18:40:15" }]  #metoda put do modułu czasowego
@@ -37,7 +42,7 @@ def Tzcof(Fzco,ro,cw,Tzco,Tpco,kw,Tpm,Mco,cwym): #zwraca Tzco[i+1]
   difference = ((-Fzco) * ro*cw*(Tzco - Tpco) + kw * (Tpm - Tzco))/(Mco*cwym)
   return (difference*d)+Tzco;
 
-def calculate(Mm, Mco,cwym,ro,cw,kw,Fcob):
+def calculate(Mm, Mco,cwym,ro,cw,kw,Fzco):
   '''#dwa requesty do modulu 3
 
   res = requests.get(module3_address + "/To")
@@ -84,10 +89,10 @@ def calculate(Mm, Mco,cwym,ro,cw,kw,Fcob):
   Fcob3 = data[0]['Fcob']
   Tpco = (Tpco1*Fcob1+Tpoc2*Fcob2+Tpco3*Fcob3)/(Fcob1+Fcob2+Fcob3) #średnia ważona '''
 
-  for i in rage(0,100):
+  for i in range(0,100):
     Tpm[0]['Tpm'] = Tpmf(Fzm, ro, cw, Tzm, Tpm[0]['Tpm'], Tzco[0]['Tzco'], Mm, cwym)
     Tzco[0]['Tzco'] = Tzcof(Fzco, ro, cw, Tzco[0]['Tzco'], Tpco, kw, Tpm[0]['Tpm'], Mco, cwym)
-  return 
+  
 
 #methods			 
 @app.route('/Tzco', methods=['GET'])
@@ -126,12 +131,3 @@ def editStart():
 if __name__ == "__main__":
     app.run(debug=True)
 
-
-
-
-
-module3_address = "http://127.0.0.1:5000"
-module5_address = "http://127.0.0.1:5000"
-module61_address = "http://127.0.0.1:5000"
-module62_address = "http://127.0.0.1:5000"
-module63_address = "http://127.0.0.1:5000"
