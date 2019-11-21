@@ -30,7 +30,7 @@ module63_address = "http://127.0.0.1:5000"
 #endpoints
 start = [{}]  #metoda put do modułu czasowego 
 timeS  = [{"speed":0,"symTime" : "2019-11-18+18:40:15" }]  #metoda put do modułu czasowego
-Tzco = [{"Tzco": 0}] #to będzie pobierał od nas moduł 6
+Tzco = [{"Tzco": 0,"To":1}] #to będzie pobierał od nas moduł 6
 Tpm = [{"Tpm": 0}] #tak samo
 
 #differentials
@@ -45,51 +45,50 @@ def Tzcof(Fzco,ro,cw,Tzco,Tpco,kw,Tpm,Mco,cwym): #zwraca Tzco[i+1]
 def calculate(Mm, Mco,cwym,ro,cw,kw,Fzco):
   '''#dwa requesty do modulu 3
 
-  res = requests.get(module3_address + "/To")
+  res = requests.get(module3_address)
   data = res.json()
-  To = data[0]['To']
+  To = data[0]['T_o']
 
-  res = requests.get(module3_address + "/Tzm")
+  res = requests.get(module3_address)
   data = res.json()
-  Tzm = data[0]['Tzm']
+  Tzm = data[0]['T_zm']
 
   ###########
   #jeden request do modułu 5, w tym requescie wysyłamy im wartość Tzco
 
-  res = requests.get(module5_address + "/Fzm")
-  res.json()
-  data = res.json()
+  res = requests.get(module5_address,params = Tzco)
+  data = res.json()['Fzm']
   Fzm = data[0]['Fzm']
 
   ##########
   #3requesty do modułu 6, do każdego budynk osobno
 
   res = requests.get(module61_address + "/Tpco")
-  data = res.json()
+  data = res.json()['Tpco']
   Tpco1 = data[0]['Tpco']
 
   res = requests.get(module62_address + "/Tpco")
-  data = res.json()
+  data = res.json()['Tpco']
   Tpco2 = data[0]['Tpco']
 
   res = requests.get(module63_address + "/Tpco")
-  data = res.json()
+  data = res.json()['Tpco']
   Tpco3 = data[0]['Tpco']  
 
   res = requests.get(module61_address + "/Fcob")
-  data = res.json()
+  data = res.json()['Fcob']
   Fcob1 = data[0]['Fcob']
 
   res = requests.get(module62_address + "/Fcob")
-  data = res.json()
-  Fcob2 = data[0]['Fcob2']
+  data = res.json()['Fcob']
+  Fcob2 = data[0]['Fcob']
 
   res = requests.get(module63_address + "/Fcob")
-  data = res.json()
+  data = res.json()['Fcob']
   Fcob3 = data[0]['Fcob']
   Tpco = (Tpco1*Fcob1+Tpoc2*Fcob2+Tpco3*Fcob3)/(Fcob1+Fcob2+Fcob3) #średnia ważona '''
 
-  for i in range(0,100):
+  for i in range(0,5):
     Tpm[0]['Tpm'] = Tpmf(Fzm, ro, cw, Tzm, Tpm[0]['Tpm'], Tzco[0]['Tzco'], Mm, cwym)
     Tzco[0]['Tzco'] = Tzcof(Fzco, ro, cw, Tzco[0]['Tzco'], Tpco, kw, Tpm[0]['Tpm'], Mco, cwym)
   
@@ -130,4 +129,3 @@ def editStart():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
