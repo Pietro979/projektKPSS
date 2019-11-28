@@ -92,15 +92,26 @@ def calculate(Mm, Mco,cwym,ro,cw,kw,Fzco):
   for i in range (1,10):
     Tpm[0]['Tpm'] = Tpmf(Fzm, ro, cw, Tzm, Tpm[0]['Tpm'], Tzco[0]['Tzco'], Mm, cwym)
     Tzco[0]['Tzco'] = Tzcof(Fzco, ro, cw, Tzco[0]['Tzco'], Tpco, kw, Tpm[0]['Tpm'], Mco, cwym)
-  
+speed=0;  
 while(1):
   res = requests.get(ur_address + "/impuls")
   data = res.json()['impuls']
   impuls = data[0]['impuls']
+
+#Skalowanie czasu
+  res1=requests.get(ur_address + "/time")
+  data1= res1.json()['time']
+  speed = data1[0]['time']
+  
+  if (speed != 0):
+    res1 = requests.get(ur_address + "/start")
+    data1 = res1.json()['start']
+    speed = data1[0]['start']
+#Koniec skalowania czasu  
   print(impuls)
   if(impuls == 1):
     print("test1")
-    for i in range(0,5):
+    for i in range(0,speed):
       res = requests.get(ur_address + "/Tzco")
       data = res.json()
       Tzco = data['Tzco']

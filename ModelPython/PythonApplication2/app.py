@@ -9,6 +9,7 @@ time  = [{"speed":0,"symTime" : "2019-11-18+18:40:15" }]  #metoda put do modułu
 Tzco = [{"Tzco": 0}] #to będzie pobierał od nas moduł 6
 Tpm = [{"Tpm": 0}] #tak samo
 impuls = [{"impuls": 0}]
+speed = [{"speed": 0}]
 #methods			 
 @app.route('/Tzco', methods=['GET'])
 def getTzco():
@@ -66,7 +67,24 @@ def editStart():
     qs = request.get_json()
     impuls[0] = {"impuls": 1}
     return jsonify({})
+# Nowe metody : 
+# @app.route('/time', methods=['PUT'])
+# def editTime():
+#     new_time = request.get_json()
+#     time[0] = new_time['symTime']  
+#     speed[0] =new_time['speed']  
+#     qs = request.get_json()
+#     impuls[0] = {"impuls": 1}
+#     return jsonify({})  
 
+# @app.route('/start', methods=['PUT'])
+# def editStart():
+#     new_start = request.get_json()
+#     start[0] = new_start['startTime']   
+#     speed[0]=new_start['speed'] 
+#     qs = request.get_json()
+#     impuls[0] = {"impuls": 1}
+#     return jsonify({})
 
 if __name__ == "__main__":
     app.run(debug=True)
