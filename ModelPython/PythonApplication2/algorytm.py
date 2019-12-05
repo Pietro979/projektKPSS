@@ -132,6 +132,6 @@ while(1):
       #Tpm = Tpmf(Fzm, ro, cw, Tzm, Tpm, Tzco, Mm, cwym)
       res = requests.put(ur_address + "/Tpm",json={'Tpm':Tpm[0]['Tpm']})
       res1 = requests.put(ur_address + "/Tzco",json={'Tzco':Tzco[0]['Tzco']})
-
+      res = requests.put(module7_adress+"/modul4",json=[[{"id":6,"name":"Tzco","value";Tzco[0]['Tzco']},{"id":8,"name":"Tpco","value";Tpm[0]['Tpm']}]
 
     res2 = requests.put(ur_address + "/impuls",json={'impuls':0})
