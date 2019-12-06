@@ -10,7 +10,7 @@ ro = 1000;          #gestosc wody
 cw = 4200;          #cieplo wlasciwe wody
 kw = 250000;        #wspolczynnik przenikania ciepla
 Fzco = 60;
-
+String sim_time;
 #Variables
 Fzm = 10          #Strumien ogrzanej wody od 0 do ok. 22
 To = 20          #Temperatura zewnetrzna
@@ -77,6 +77,7 @@ def calculate(Mm, Mco,cwym,ro,cw,kw,Fzco):
 
   '''res = requests.get(module61_address + "/Fcob")
   data = res.json()['Fcob']
+  sim_time=data[0]['time']
   Fcob1 = data[0]['Fcob']
   res = requests.get(module62_address + "/Fcob")
   data = res.json()['Fcob']
